@@ -1,6 +1,8 @@
 var express = require("express");
 var app = express();
+var jsonParser = require("body-parser").json();
 
+app.use(express.static("./"))
 var festivals = [
   {
     name: "Holy Ship!",
@@ -197,6 +199,33 @@ var festivals = [
     lineup: "",
     dataId: 12
   }
-]
+];
 
-app.listen(8080);
+
+app.post("/sort", jsonParser, function(req, res) {
+  var matched = [];
+  for(var i = 0;i < festivals.length;i++) {
+    if(req.body.state == festivals[i].state.toLowerCase() && req.body.month == festivals[i].month.toLowerCase()) {
+      matched.push(festivals[i])
+    }
+    else if(req.body.state == "any" && req.body.month == festivals[i].month.toLowerCase()) {
+      matched.push(festivals[i])
+    }
+    else if(req.body.state == festivals[i].state.toLowerCase() && req.body.month == "any") {
+      matched.push(festivals[i])
+    }
+    else if(req.body.state == "any" && req.body.month == "any") {
+      matched.push(festivals[i])
+    }
+  }
+  if(matched.length > 0) {
+    res.send(matched);
+  } else {
+    res.sendStatus(404)
+  }
+})
+
+var port = process.env.PORT || 1337;
+app.listen(port, function() {
+  console.log("Listening on port " + port);
+})
