@@ -1,6 +1,7 @@
 h1 {
   text-align: center;
   margin-top: 40px;
+  color: white;
 }
 
 #sortForm {
@@ -15,4 +16,39 @@ h1 {
 .carouselImages {
   height: 750px;
   min-height: 750px;
+}
+
+.listingImage {
+  height: 100px;
+  width: 200px;
+  float: right;
+}
+
+.date {
+  background-color: blue;
+  text-align: center;
+  font-size: 19px;
+  color: white;
+}
+
+body {
+  background-color: black;
+}
+
+#sortText {
+  color: white;
+}
+
+#results {
+  margin-top: 20px;
+}
+
+.info {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.price {
+  margin-top: 10px;
+  font-size: 18px;
 }
