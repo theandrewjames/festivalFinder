@@ -3,6 +3,14 @@ var state = document.getElementById("state");
 var month = document.getElementById("month");
 var carousel = document.getElementById("carousel");
 var results = document.getElementById("results");
+var profileContainer = document.getElementById("profile");
+var titles = document.getElementsByClassName("name");
+var profileImage = document.getElementById("profileImage");
+var dates = document.getElementById("footerDates");
+var footerName = document.getElementById("footerName");
+var modalLineup = document.getElementById("modalImage");
+var profileLink = document.getElementById("profileLink");
+var profileAddress = document.getElementById("profileAddress");
 
 sortButton.addEventListener("click", function() {
   var data = {
@@ -17,6 +25,11 @@ sortButton.addEventListener("click", function() {
     if(xhr.status == 200) {
       var response = JSON.parse(xhr.response);
       carousel.classList.add("hidden");
+      if(!$(results).hasClass("hidden")) {
+        results.classList.remove("hidden");
+      }
+      profile.classList.add("hidden");
+      results.classList.remove("hidden");
       while(results.hasChildNodes()) {
         results.removeChild(results.lastChild)
       }
@@ -51,6 +64,7 @@ sortButton.addEventListener("click", function() {
         info.className = "col-md-5 info";
 
         var name = document.createElement("a");
+        name.className = "name";
         name.setAttribute("data-id", response[i].dataId)
         name.textContent = response[i].name
 
@@ -94,8 +108,36 @@ sortButton.addEventListener("click", function() {
         results.appendChild(row);
 
       }
+      showEvent();
     }
     else if(xhr.status == 404) {
     }
   }
 })
+
+function showEvent() {
+  for(var i = 0;i < titles.length;i++) {
+    titles[i].addEventListener("click", function() {
+      var id = this.dataset.id;
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "/view?q=" + id, true);
+      xhr.send();
+      xhr.onload = function() {
+        if(xhr.status == 200) {
+          var response = JSON.parse(xhr.response);
+          carousel.classList.add("hidden");
+          profileContainer.classList.remove("hidden");
+          results.classList.add("hidden");
+          profileImage.setAttribute("src", response[0].image);
+          dates.textContent = response[0].day + ", " + response[0].month + " " + response[0].dates + ", " + response[0].year;
+          footerName.textContent = response[0].name;
+          modalLineup.setAttribute("src", response[0].lineup);
+          profileLink.textContent = response[0].website;
+          profileLink.setAttribute("href", "http://" + response[0].website);
+          profileAddress.textContent = response[0].venue + ", " + response[0].city + ", " + response[0].state
+          profileAddress.setAttribute("href", "http://maps.google.com/?q=" + response[0].venue + "+" + response[0].city)
+        }
+      }
+    })
+  }
+}
