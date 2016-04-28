@@ -135,3 +135,18 @@ body {
   width: 100%;
   max-height: 350px;
 }
+
+#reviewTablist {
+  background-color: white;
+  margin-top: 2px;
+  padding-top: 10px;
+}
+
+#reviewButton {
+  margin-top: 10px;
+}
+
+.panel-footer {
+  background-color: white;
+  border-top: 0;
+}

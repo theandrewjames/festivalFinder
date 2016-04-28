@@ -11,8 +11,17 @@ var footerName = document.getElementById("footerName");
 var modalLineup = document.getElementById("modalImage");
 var profileLink = document.getElementById("profileLink");
 var profileAddress = document.getElementById("profileAddress");
+var price = document.getElementById("footerPrice");
+var reviewTab = document.getElementById("reviewTab");
+var reviewerName = document.getElementById("reviewerName");
+var review = document.getElementById("reviewInput");
+var addReview = document.getElementById("reviewButton");
+
 
 sortButton.addEventListener("click", function() {
+  while(reviewTab.hasChildNodes()) {
+    reviewTab.removeChild(reviewTab.lastChild)
+  }
   var data = {
     state: state.value.toLowerCase(),
     month: month.value.toLowerCase()
@@ -28,7 +37,7 @@ sortButton.addEventListener("click", function() {
       if(!$(results).hasClass("hidden")) {
         results.classList.remove("hidden");
       }
-      profile.classList.add("hidden");
+      profileContainer.classList.add("hidden");
       results.classList.remove("hidden");
       while(results.hasChildNodes()) {
         results.removeChild(results.lastChild)
@@ -132,12 +141,56 @@ function showEvent() {
           dates.textContent = response[0].day + ", " + response[0].month + " " + response[0].dates + ", " + response[0].year;
           footerName.textContent = response[0].name;
           modalLineup.setAttribute("src", response[0].lineup);
-          profileLink.textContent = response[0].website;
+          profileLink.textContent = " " + response[0].website;
           profileLink.setAttribute("href", "http://" + response[0].website);
-          profileAddress.textContent = response[0].venue + ", " + response[0].city + ", " + response[0].state
-          profileAddress.setAttribute("href", "http://maps.google.com/?q=" + response[0].venue + "+" + response[0].city)
+          profileAddress.textContent = " " + response[0].venue + ", " + response[0].city + ", " + response[0].state
+          profileAddress.setAttribute("href", "http://maps.google.com/?q=" + response[0].venue + "+" + response[0].city);
+          price.textContent = "GA: " + response[0].ga + " VIP: " + response[0].vip;
+          addReview.dataset.id = response[0].dataId;
         }
       }
     })
   }
 }
+
+document.addEventListener("click", function() {
+  if(event.target.dataset.type == "addReview") {
+    var festivalId = event.target.dataset.id;
+    event.preventDefault();
+    var date = new Date();
+    var info = {
+      name: reviewerName.value,
+      review: review.value,
+      festivalId: festivalId,
+      date: (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear()
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/addReview", true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(JSON.stringify(info));
+    xhr.onload = function() {
+      if(xhr.status == 200) {
+        var results = JSON.parse(xhr.response);
+        for(var i = 0;i < results[0].length;i++) {
+          var panel = document.createElement("div");
+          panel.className = "panel panel-default";
+
+          var panelBody = document.createElement("div");
+          panelBody.className = "panel-body";
+          panelBody.textContent = results[0][i][0];
+
+          var panelFooter = document.createElement("div");
+          panelFooter.className = "panel-footer";
+          panelFooter.textContent = "By " + results[0][i][1] + " on " + results[0][i][2];
+
+          var hr = document.createElement("hr");
+
+          panel.appendChild(panelBody);
+          panel.appendChild(panelFooter);
+          reviewTab.appendChild(panel);
+          reviewTab.appendChild(hr)
+        }
+      }
+    }
+  }
+})

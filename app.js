@@ -18,6 +18,7 @@ var festivals = [
     vip: "",
     image: "images/holyship.jpg",
     lineup: "images/holyshipLineup.jpg",
+    reviews: [],
     dataId: 0
 
   },
@@ -35,6 +36,7 @@ var festivals = [
     vip: "$1200",
     image: "images/ultraMiami.jpg",
     lineup: "images/ultramiamiLineup.jpg",
+    reviews: [],
     dataId: 1
   },
   {
@@ -51,6 +53,7 @@ var festivals = [
     vip: "$300",
     image: "images/buku.png",
     lineup: "images/bukuLineup.png",
+    reviews: [],
     dataId: 2
   },
   {
@@ -67,6 +70,7 @@ var festivals = [
     vip: "",
     image: "images/crssd.png",
     lineup: "images/crssdLIneup.jpg",
+    reviews: [],
     dataId: 3
   },
   {
@@ -83,6 +87,7 @@ var festivals = [
     vip: "$599",
     image: "images/okeechobee.jpg",
     lineup: "images/okeechobeeLineup.jpg",
+    reviews: [],
     dataId: 4
   },
   {
@@ -99,6 +104,7 @@ var festivals = [
     vip: "",
     image: "images/further.png",
     lineup: "images/furtherLineup.jpg",
+    reviews: [],
     dataId: 5
   },
   {
@@ -115,6 +121,7 @@ var festivals = [
     vip: "$215",
     image: "images/dreamscape.png",
     lineup: "images/dreamscapeLineup.jpg",
+    reviews: [],
     dataId: 6
   },
   {
@@ -131,6 +138,7 @@ var festivals = [
     vip: "$1099",
     image: "images/hangout.jpg",
     lineup: "images/hangoutLineup.jpg",
+    reviews: [],
     dataId: 7
   },
   {
@@ -147,6 +155,7 @@ var festivals = [
     vip: "$225",
     image: "images/summercamp.png",
     lineup: "images/summercampLineup.jpg",
+    reviews: [],
     dataId: 8
   },
   {
@@ -163,6 +172,7 @@ var festivals = [
     vip: "$244",
     image: "images/sunset.png",
     lineup: "images/sunsetLineup.png",
+    reviews: [],
     dataId: 9
   },
   {
@@ -179,6 +189,7 @@ var festivals = [
     vip: "",
     image: "images/lightning.jpg",
     lineup: "images/lightningLineup.jpg",
+    reviews: [],
     dataId: 10
   },
   {
@@ -195,6 +206,7 @@ var festivals = [
     vip: "$800",
     image: "images/bonnaroo.jpg",
     lineup: "images/bonnarooLineup.jpg",
+    reviews: [],
     dataId: 11
   },
   {
@@ -211,6 +223,7 @@ var festivals = [
     vip: "$700",
     image: "images/edclv.jpg",
     lineup: "",
+    reviews: [],
     dataId: 12
   }
 ];
@@ -252,7 +265,23 @@ app.get("/view", function(req, res) {
   else {res.sendStatus(404)}
 })
 
+app.post("/addReview", jsonParser, function(req, res) {
+  var matched = [];
+  for(var i = 0;i < festivals.length;i++) {
+    if(req.body.festivalId == festivals[i].dataId) {
+      festivals[i].reviews.unshift([req.body.name, req.body.review, req.body.date]);
+      matched.push(festivals[i].reviews)
+    }
+  }
+  if(matched.length > 0) {
+    res.send(matched)
+  } else {
+    res.sendStatus(404)
+  }
+})
 var port = process.env.PORT || 1337;
 app.listen(port, function() {
   console.log("Listening on port " + port);
 })
+
+module.exports = app;
