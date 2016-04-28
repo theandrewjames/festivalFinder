@@ -11,6 +11,7 @@ var footerName = document.getElementById("footerName");
 var modalLineup = document.getElementById("modalImage");
 var profileLink = document.getElementById("profileLink");
 var profileAddress = document.getElementById("profileAddress");
+var price = document.getElementById("footerPrice");
 
 sortButton.addEventListener("click", function() {
   var data = {
@@ -132,10 +133,11 @@ function showEvent() {
           dates.textContent = response[0].day + ", " + response[0].month + " " + response[0].dates + ", " + response[0].year;
           footerName.textContent = response[0].name;
           modalLineup.setAttribute("src", response[0].lineup);
-          profileLink.textContent = response[0].website;
+          profileLink.textContent = " " + response[0].website;
           profileLink.setAttribute("href", "http://" + response[0].website);
-          profileAddress.textContent = response[0].venue + ", " + response[0].city + ", " + response[0].state
-          profileAddress.setAttribute("href", "http://maps.google.com/?q=" + response[0].venue + "+" + response[0].city)
+          profileAddress.textContent = " " + response[0].venue + ", " + response[0].city + ", " + response[0].state
+          profileAddress.setAttribute("href", "http://maps.google.com/?q=" + response[0].venue + "+" + response[0].city);
+          price.textContent = "GA: " + response[0].ga + " VIP: " + response[0].vip;
         }
       }
     })
