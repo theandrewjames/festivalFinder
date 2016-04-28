@@ -52,3 +52,86 @@ body {
   margin-top: 10px;
   font-size: 18px;
 }
+
+#imageFooter {
+  border-top: 0;
+  height: 40px;
+  padding-top: 0px;
+}
+
+#footerDates {
+  height: 40px;
+  text-align: center;
+  padding-top: 10px;
+  border: 1px solid black;
+  color: white;
+  background-color: rgb(63, 153, 255);
+}
+
+#footerName {
+  height: 40px;
+  text-align: center;
+  padding-top: 10px;
+  border: 1px solid black;
+  color: white;
+  background-color: rgb(63, 153, 255);
+}
+
+#footerLocation {
+  height: 40px;
+  text-align: center;
+  padding-top: 10px;
+  border: 1px solid black;
+  background-color: rgb(63, 153, 255);
+}
+
+#footerLineup {
+  height: 40px;
+  text-align: center;
+  border: 1px solid black;
+  background-color: rgb(63, 153, 255);
+}
+
+#footerSite {
+  height: 40px;
+  text-align: center;
+  padding-top: 10px;
+  border: 1px solid black;
+  background-color: rgb(63, 153, 255);
+}
+
+#footerPrice {
+  height: 40px;
+  text-align: center;
+  border: 1px solid black;
+  color: white;
+  padding-top: 10px;
+  background-color: rgb(63, 153, 255);
+}
+#profile {
+  margin-top: 20px;
+}
+#profilePanel {
+  border: 0;
+  margin-bottom: 0px;
+}
+
+#profileAddress {
+  color: white;
+}
+
+#profileLineup {
+  color: white;
+}
+
+#profileLink {
+  color: white;
+}
+#profileBody {
+  padding: 0px;
+}
+
+#profileImage {
+  width: 100%;
+  max-height: 350px;
+}

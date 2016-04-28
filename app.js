@@ -17,7 +17,7 @@ var festivals = [
     ga: "$574+",
     vip: "",
     image: "images/holyship.jpg",
-    lineup: "images/holyshipLineup.png",
+    lineup: "images/holyshipLineup.jpg",
     dataId: 0
 
   },
@@ -237,6 +237,19 @@ app.post("/sort", jsonParser, function(req, res) {
   } else {
     res.sendStatus(404)
   }
+})
+
+app.get("/view", function(req, res) {
+  var matched = [];
+  for(var i = 0;i < festivals.length;i++) {
+    if(req.query.q == festivals[i].dataId) {
+      matched.push(festivals[i])
+    }
+  }
+  if(matched.length > 0) {
+    res.send(matched)
+  }
+  else {res.sendStatus(404)}
 })
 
 var port = process.env.PORT || 1337;
