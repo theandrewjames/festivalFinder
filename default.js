@@ -134,6 +134,7 @@ function showEvent() {
       xhr.onload = function() {
         if(xhr.status == 200) {
           var response = JSON.parse(xhr.response);
+
           carousel.classList.add("hidden");
           profileContainer.classList.remove("hidden");
           results.classList.add("hidden");
@@ -147,6 +148,29 @@ function showEvent() {
           profileAddress.setAttribute("href", "http://maps.google.com/?q=" + response[0].venue + "+" + response[0].city);
           price.textContent = "GA: " + response[0].ga + " VIP: " + response[0].vip;
           addReview.dataset.id = response[0].dataId;
+
+          for(var i = 0;i < response[0].reviews.length;i++) {
+            while(reviewTab.hasChildNodes()) {
+              reviewTab.remove(reviewTab.lastChild)
+            }
+            var panel = document.createElement("div");
+            panel.className = "panel panel-default";
+
+            var panelBody = document.createElement("div");
+            panelBody.className = "panel-body";
+            panelBody.textContent = response[0].reviews[i][1];
+
+            var panelFooter = document.createElement("div");
+            panelFooter.className = "panel-footer";
+            panelFooter.textContent = "By " + response[0].reviews[i][0] + " on " + response[0].reviews[i][2];
+
+            var hr = document.createElement("hr");
+
+            panel.appendChild(panelBody);
+            panel.appendChild(panelFooter);
+            reviewTab.appendChild(panel);
+            reviewTab.appendChild(hr)
+          }
         }
       }
     })
@@ -171,17 +195,21 @@ document.addEventListener("click", function() {
     xhr.onload = function() {
       if(xhr.status == 200) {
         var results = JSON.parse(xhr.response);
+        console.log(results)
         for(var i = 0;i < results[0].length;i++) {
+          while(reviewTab.hasChildNodes()) {
+            reviewTab.remove(reviewTab.lastChild)
+          }
           var panel = document.createElement("div");
           panel.className = "panel panel-default";
 
           var panelBody = document.createElement("div");
           panelBody.className = "panel-body";
-          panelBody.textContent = results[0][i][0];
+          panelBody.textContent = results[0][i][1];
 
           var panelFooter = document.createElement("div");
           panelFooter.className = "panel-footer";
-          panelFooter.textContent = "By " + results[0][i][1] + " on " + results[0][i][2];
+          panelFooter.textContent = "By " + results[0][i][0] + " on " + results[0][i][2];
 
           var hr = document.createElement("hr");
 

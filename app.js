@@ -14,13 +14,12 @@ var festivals = [
     dates: "10-13",
     day: "Wed",
     year: 2016,
-    ga: "$574+",
+    ga: "$574",
     vip: "",
     image: "images/holyship.jpg",
     lineup: "images/holyshipLineup.jpg",
-    reviews: [],
+    reviews: [["Philip Boateng", "Looking at the pictures, this festival got me thinking about the beautiful creatures in this world. It is indeed a great festival of the World and might be the best festival in the world. I would be very grateful to witness this festival in my life time to cheer my life.", "11/25/2015"]],
     dataId: 0
-
   },
   {
     name: "Ultra Miami",
@@ -36,7 +35,7 @@ var festivals = [
     vip: "$1200",
     image: "images/ultraMiami.jpg",
     lineup: "images/ultramiamiLineup.jpg",
-    reviews: [],
+    reviews: [["Sonny J", "Ultra was fun, very great experience, I think everyone should at least get to experience it at least once in their life time. My friends and I had a blast but unfortunately did not attend the the third day so I sold my last day ticket.. I had a blast thought the first two days. If your into the whole trance and EDM vibes then this is a must go.. It was super packed but thats what makes it unique and also the DJ's were awesome..", "2/12/2016"]],
     dataId: 1
   },
   {
@@ -53,7 +52,7 @@ var festivals = [
     vip: "$300",
     image: "images/buku.png",
     lineup: "images/bukuLineup.png",
-    reviews: [],
+    reviews: [["The Festival Guy", " I am going to give Buku Music And Arts festival a healthy 4 out of 5 stars. It was an absolute blast to attend. To get five stars, they simply needs to give us places to sit, add more art installations (interactive art would be best), create a program to reward the crowd for cleaning up, and go the extra mile in decoration. I also encourage them to go for a full three day festival, because two days was just not enough.", "03/18/2014"]],
     dataId: 2
   },
   {
@@ -70,9 +69,12 @@ var festivals = [
     vip: "",
     image: "images/crssd.png",
     lineup: "images/crssdLIneup.jpg",
-    reviews: [],
+    reviews: [["Chip Conley", "A music festival in March? Sounds like Ultra in Miami. Yes, that's quite a standard for CRSSD to live up to, but for those on the west coast who want to start their festival season in style, this new San Diego fest is a good way to initiate your party year. With a very experienced producer and a little older crowd than your typical EDM rave, CRSSD has a very specific idea of where it's going. Any festival on a waterfront park in California gets my attention plus this urban location means it's easy to get to plus there are the fascinations of the local haunts to entertain you. This does mean CRSSD's energy as a festival can be a little less combustible (since it's not an island you can't escape as is the case with Burning Man and many other festivals), but for those looking for a laid-back music weekend that's 'easy peasy', this is your ticket.", "1/14/2016"]],
     dataId: 3
   },
+
+
+
   {
     name: "Okeechobee",
     venue: "Sunshine Grove",
@@ -90,6 +92,9 @@ var festivals = [
     reviews: [],
     dataId: 4
   },
+
+
+
   {
     name: "Further Future",
     venue: "Moapa River Reservation",
@@ -104,9 +109,12 @@ var festivals = [
     vip: "",
     image: "images/further.png",
     lineup: "images/furtherLineup.jpg",
-    reviews: [],
+    reviews: [["Chip Conley", "FF has deep meaning for me as my co-founder of Fest300 Art Gimbel died in a car crash driving to the festival. So, while I didn't make the southern Nevada trek in 2015, I know I will some day as an homage to Art and to art since the Robot Heart team have a special appreciation for art in the desert. This is sort of like Burning Man graduate school, for those who want to go deeper with other fashion-minded burners and, frankly, especially for the cool kid crowd (with a little extra dough). If you've done Burning Man a half-dozen times and want to start your festival season with a little deja vu in the southern part of the same state, maybe I'll see you at a future Further Future.", "1/12/2016"]],
     dataId: 5
   },
+
+
+
   {
     name: "Dreamscape",
     venue: "Camp Ramblewood",
