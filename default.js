@@ -12,8 +12,15 @@ var modalLineup = document.getElementById("modalImage");
 var profileLink = document.getElementById("profileLink");
 var profileAddress = document.getElementById("profileAddress");
 var price = document.getElementById("footerPrice");
+var reviewTab = document.getElementById("reviewTab");
+var reviewerName = document.getElementById("reviewerName");
+var review = document.getElementById("reviewInput");
+var addReview = document.getElementById("reviewButton");
 
 sortButton.addEventListener("click", function() {
+  while(reviewTab.hasChildNodes()) {
+    reviewTab.removeChild(reviewTab.lastChild)
+  }
   var data = {
     state: state.value.toLowerCase(),
     month: month.value.toLowerCase()
@@ -29,7 +36,7 @@ sortButton.addEventListener("click", function() {
       if(!$(results).hasClass("hidden")) {
         results.classList.remove("hidden");
       }
-      profile.classList.add("hidden");
+      profileContainer.classList.add("hidden");
       results.classList.remove("hidden");
       while(results.hasChildNodes()) {
         results.removeChild(results.lastChild)
@@ -126,6 +133,7 @@ function showEvent() {
       xhr.onload = function() {
         if(xhr.status == 200) {
           var response = JSON.parse(xhr.response);
+
           carousel.classList.add("hidden");
           profileContainer.classList.remove("hidden");
           results.classList.add("hidden");
@@ -138,8 +146,78 @@ function showEvent() {
           profileAddress.textContent = " " + response[0].venue + ", " + response[0].city + ", " + response[0].state
           profileAddress.setAttribute("href", "http://maps.google.com/?q=" + response[0].venue + "+" + response[0].city);
           price.textContent = "GA: " + response[0].ga + " VIP: " + response[0].vip;
+          addReview.dataset.id = response[0].dataId;
+
+          for(var i = 0;i < response[0].reviews.length;i++) {
+            while(reviewTab.hasChildNodes()) {
+              reviewTab.remove(reviewTab.lastChild)
+            }
+            var panel = document.createElement("div");
+            panel.className = "panel panel-default";
+
+            var panelBody = document.createElement("div");
+            panelBody.className = "panel-body";
+            panelBody.textContent = response[0].reviews[i][1];
+
+            var panelFooter = document.createElement("div");
+            panelFooter.className = "panel-footer";
+            panelFooter.textContent = "By " + response[0].reviews[i][0] + " on " + response[0].reviews[i][2];
+
+            var hr = document.createElement("hr");
+
+            panel.appendChild(panelBody);
+            panel.appendChild(panelFooter);
+            reviewTab.appendChild(panel);
+            reviewTab.appendChild(hr)
+          }
         }
       }
     })
   }
 }
+
+document.addEventListener("click", function() {
+  if(event.target.dataset.type == "addReview") {
+    var festivalId = event.target.dataset.id;
+    event.preventDefault();
+    var date = new Date();
+    var info = {
+      name: reviewerName.value,
+      review: review.value,
+      festivalId: festivalId,
+      date: (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear()
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/addReview", true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(JSON.stringify(info));
+    xhr.onload = function() {
+      if(xhr.status == 200) {
+        var results = JSON.parse(xhr.response);
+        console.log(results)
+        for(var i = 0;i < results[0].length;i++) {
+          while(reviewTab.hasChildNodes()) {
+            reviewTab.remove(reviewTab.lastChild)
+          }
+          var panel = document.createElement("div");
+          panel.className = "panel panel-default";
+
+          var panelBody = document.createElement("div");
+          panelBody.className = "panel-body";
+          panelBody.textContent = results[0][i][1];
+
+          var panelFooter = document.createElement("div");
+          panelFooter.className = "panel-footer";
+          panelFooter.textContent = "By " + results[0][i][0] + " on " + results[0][i][2];
+
+          var hr = document.createElement("hr");
+
+          panel.appendChild(panelBody);
+          panel.appendChild(panelFooter);
+          reviewTab.appendChild(panel);
+          reviewTab.appendChild(hr)
+        }
+      }
+    }
+  }
+})

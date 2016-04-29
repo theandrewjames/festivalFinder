@@ -168,6 +168,34 @@
                 <div class="col-md-4" id="footerPrice">
                 </div>
               </div>
+              <div class="row">
+                <div class="col-md-12" id="reviewTablist">
+                  <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                      <li role="presentation" class="active"><a href="#reviewTab" aria-controls="home" role="tab" data-toggle="tab">Reviews</a></li>
+                      <li role="presentation"><a href="#addTab" aria-controls="profile" role="tab" data-toggle="tab">Leave a review</a></li>
+                    </ul>
+                    <div class="tab-content">
+                      <div role="tabpanel" class="tab-pane active" id="reviewTab">
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="addTab">
+                        <form id="reviewForm">
+                          <div class="form-group col-md-4">
+                            <br>
+                            <label for="reviewerName">Name:</label>
+                            <input type="text" id="reviewerName" class="form-control">
+                          </div>
+                          <div class="form-group col-md-12">
+                            <label for="reviewInput">Review:</label>
+                            <textarea id="reviewInput" rows="4" class="form-control"></textarea>
+                            <button class="btn btn-primary" data-type="addReview" id="reviewButton">Add Review</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
