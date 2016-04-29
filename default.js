@@ -16,6 +16,7 @@ var reviewTab = document.getElementById("reviewTab");
 var reviewerName = document.getElementById("reviewerName");
 var review = document.getElementById("reviewInput");
 var addReview = document.getElementById("reviewButton");
+var favoriteTab = document.getElementById("favoriteTab");
 
 sortButton.addEventListener("click", function() {
   while(reviewTab.hasChildNodes()) {
@@ -133,7 +134,6 @@ function showEvent() {
       xhr.onload = function() {
         if(xhr.status == 200) {
           var response = JSON.parse(xhr.response);
-
           carousel.classList.add("hidden");
           profileContainer.classList.remove("hidden");
           results.classList.add("hidden");
@@ -147,7 +147,19 @@ function showEvent() {
           profileAddress.setAttribute("href", "http://maps.google.com/?q=" + response[0].venue + "+" + response[0].city);
           price.textContent = "GA: " + response[0].ga + " VIP: " + response[0].vip;
           addReview.dataset.id = response[0].dataId;
+          if(response[0].favorite == true) {
+            favoriteTab.textContent = "♥ Remove from favorites";
+            favoriteTab.dataset.id = response[0].dataId;
+            favoriteTab.dataset.type = "favorite";
+            favoriteTab.className = "added";
 
+          }
+          else {
+            favoriteTab.textContent = "♡ Add to favorites";
+            favoriteTab.className = "notAdded";
+            favoriteTab.dataset.type = "favorite";
+            favoriteTab.dataset.id = response[0].dataId;
+          }
           for(var i = 0;i < response[0].reviews.length;i++) {
             while(reviewTab.hasChildNodes()) {
               reviewTab.remove(reviewTab.lastChild)
@@ -194,7 +206,6 @@ document.addEventListener("click", function() {
     xhr.onload = function() {
       if(xhr.status == 200) {
         var results = JSON.parse(xhr.response);
-        console.log(results)
         for(var i = 0;i < results[0].length;i++) {
           while(reviewTab.hasChildNodes()) {
             reviewTab.remove(reviewTab.lastChild)
@@ -216,6 +227,37 @@ document.addEventListener("click", function() {
           panel.appendChild(panelFooter);
           reviewTab.appendChild(panel);
           reviewTab.appendChild(hr)
+        }
+      }
+    }
+  }
+
+  if(event.target.dataset.type == "favorite") {
+    var favorite = event.target;
+    var id = favorite.dataset.id;
+    if($(favorite).hasClass("notAdded")) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "/favorite?q=" + id, true);
+      xhr.send();
+      xhr.onload = function() {
+        if(xhr.status == 200) {
+          favorite.classList.remove("notAdded");
+          favorite.classList.add("added");
+          favorite.textContent = "♥ Remove from favorites";
+        }
+      }
+    }
+    else {
+      favorite.classList.remove("added");
+      favorite.classList.add("notAdded");
+      favorite.textContent = "♡ Add to favorites";
+      var xhr = new XMLHttpRequest();
+      xhr.open("DELETE", "/removefavorite?q=" + id, true);
+      xhr.send();
+      xhr.onload = function() {
+        if(xhr.status == 200) {
+          var results = xhr.response;
+
         }
       }
     }
