@@ -10,7 +10,7 @@ var port = server.address().port;
 
 describe("Info can be", function() {
 
-  it("posted", function(done) {
+  it("posted/sort", function(done) {
     request({
       method: "POST",
       url: "http://localhost:" + port + "/sort",
@@ -23,6 +23,17 @@ describe("Info can be", function() {
 
   it("gotten", function(done) {
     request("http://localhost:" + port + "/view?q=0", function(error, response, body) {
+      assert.equal(response.statusCode, 200)
+      done();
+    })
+  })
+
+  it("posted/review", function(done) {
+    request({
+      method: "POST",
+      url: "http://localhost:" + port + "/addReview",
+      json: {name: "Bob", review: "Review", festivalId: "0", date: "11/25/2017"}
+    }, function(error, response, body) {
       assert.equal(response.statusCode, 200)
       server.close();
       done();

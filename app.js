@@ -89,7 +89,7 @@ var festivals = [
     vip: "$599",
     image: "images/okeechobee.jpg",
     lineup: "images/okeechobeeLineup.jpg",
-    reviews: [],
+    reviews: [["Joey S.", "So this marks Florida's first big music festival because Ultra doesn't count. I gave it four stars for all the right reasons but there was some exceptions which keeps it from being a perfect 5 rating . Music line up was diverse and timed right. Stages were set up perfectly and pretty cool because they were placed in this secluded area surrounded by trees giving it an oasis feeling. I received a VIP treatment because of my friends in Bangarang. Loved seeing some backstage action. didn't get to meet anyone hugely famous though. Overall perfect place for a music festival.", "3/7/2016"]],
     dataId: 4
   },
 
@@ -129,7 +129,7 @@ var festivals = [
     vip: "$215",
     image: "images/dreamscape.png",
     lineup: "images/dreamscapeLineup.jpg",
-    reviews: [],
+    reviews: [["Vanessa G.", "Well this was a first for me in terms of festivals, and the experience was certainly a religious one hehe...I was extremely excited about coming here, but the camping part was the reason why I hesitated, you see I have never been camping and I am not a very outdoors person, so the hubs and I decided to just go to see the bands we really wanted to see (THE AVETT BROTHERS AND MUMFORD AND SONS!!!) explore the fairgrounds and get out of there, and that is exactly what we did.While the festival lasted 3 days, we ended up going on Sunday and it was more than enough for us.", "3/11/2015"]],
     dataId: 6
   },
   {
@@ -146,7 +146,7 @@ var festivals = [
     vip: "$1099",
     image: "images/hangout.jpg",
     lineup: "images/hangoutLineup.jpg",
-    reviews: [],
+    reviews: [["Will P.", "Hangout fest experience was great!!! My dad and I went last year and got to the site around 5:30. Once we got to the site, we got some eats and walked around. After that we went to the Malibu Beach tent which had some great vibes with autograf playing.  After that we went to the main stage and saw spoon, which was great.  But then we saw some dark clouds rolling so we reconvened at the boom boom tent and waited for Jack U.  Once that was done we left the site and got on the shuttle which was well organized and clean. The next day we got to the site around noon and went to the hangout for lunch. The waiters there were nice and when my dad and I wanted to move to a different table to get a better view of the stage they understand and were chill about it. Very nice atmosphere.", "4/28/2016"]],
     dataId: 7
   },
   {
@@ -163,7 +163,7 @@ var festivals = [
     vip: "$225",
     image: "images/summercamp.png",
     lineup: "images/summercampLineup.jpg",
-    reviews: [],
+    reviews: [["Elle N.", "  I've been to Summercamp 3 times and each time gets better and better. I can't wait to go back again this year! I never want to leave when its over, it becomes your home. I wish electronica wasn't taking over but its happening everywhere so what can ya do? I love being able to see Umphrey's and Moe. 3 nights in a row and camping so close to the stages. I love the campfire stage, its perfect for relaxing after the big shows. I highly reccomend going on thursday for the pre-party, it is definitely worth the extra bucks. I LOVE Summercamp!", "3/11/2011"]],
     dataId: 8
   },
   {
@@ -180,9 +180,10 @@ var festivals = [
     vip: "$244",
     image: "images/sunset.png",
     lineup: "images/sunsetLineup.png",
-    reviews: [],
+    reviews: [["Phillip C.", "One of the best music festivals I've ever been to! At the same time they had tons of issues, with the VIP tent unsafe on saturday and just having them go into the general admission area. On Sunday with the rain they had to shovel people into the Ray Jay stairwell to get people out of the rain/lightning. Nothing they could do to make that any more enjoyable for everyone. The layout of the event was perfect for everyone.", "5/26/2014"]],
     dataId: 9
   },
+
   {
     name: "Lightning in a Bottle",
     venue: "San Antonio Recreation Area",
@@ -197,7 +198,7 @@ var festivals = [
     vip: "",
     image: "images/lightning.jpg",
     lineup: "images/lightningLineup.jpg",
-    reviews: [],
+    reviews: [["Debbie M.", "AWESOME Festival!!  Tips:  The extra money for car camping is worth it or getting the already set up for you nice tents! Otherwise you have to lug your stuff LONG distances to camp sites over some STEEP terrain. Cell coverage not great-poor, Walkie talkies!  If u separate from friends very hard to find again with spotty cell coverage. Very dusty - bring buff/bandana for face.  Sunglasses and hat a must.  Food expensive!!  Showers $8.  Good walking shoes, tons of walking, high boots keep feet from getting super dirty.   Wear ear plugs all the time otherwise go deaf from sound systems.", "5/23/2015"]],
     dataId: 10
   },
   {
@@ -214,9 +215,12 @@ var festivals = [
     vip: "$800",
     image: "images/bonnaroo.jpg",
     lineup: "images/bonnarooLineup.jpg",
-    reviews: [],
+    reviews: [["Shaurica C.", "Went to my first Bonnaroo last year, and loved it! The only thing that I can say is that the camping grounds are VERY dusty! Like, literally, you'll be covered in layers of dust on a daily. Not sure if there's much they can do about that, though. But I loved my first time here, and can't wait to go back this year!", "3/23/2016"]],
     dataId: 11
   },
+
+
+
   {
     name: "EDC Las Vegas",
     venue: "Las Vegas Motor Speedway",
@@ -231,9 +235,10 @@ var festivals = [
     vip: "$700",
     image: "images/edclv.jpg",
     lineup: "",
-    reviews: [],
+    reviews: [["Joanna A.", "Two things to keep in mind. COME EARLY. You will be stuck in ridiculous traffic. EAVE EARLY. My friend texted me around 2:30 AM saying she was going to leave to avoid traffic. Keep in mind the event ends at 5:30AM. I thought she was insane (lol) I left when the event ended. Got to my car by 6 AM and I kid you not left the venue parking lot at 9 AM!!! 3 fucking hours to leave the parking lot. And don't forget how hot Vegas is in the summer. It had to be the worst 3 hours of my life. Other then that the venue is great and EDC is amazing.", "7/1/2015"]],
     dataId: 12
   }
+
 ];
 
 
