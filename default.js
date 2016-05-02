@@ -297,24 +297,25 @@ document.addEventListener("click", function() {
           favoriteTab.dataset.type = "favorite";
           favoriteTab.dataset.id = response[0].dataId;
         }
+
         for(var i = 0;i < response[0].reviews.length;i++) {
+          while(reviewTab.firstChild) {
+            reviewTab.removeChild(reviewTab.firstChild)
+          }
           var panel = document.createElement("div");
           panel.className = "panel panel-default";
           var panelBody = document.createElement("div");
           panelBody.className = "panel-body";
           panelBody.textContent = response[0].reviews[i][1];
-          console.log("9")
           var panelFooter = document.createElement("div");
           panelFooter.className = "panel-footer";
           panelFooter.textContent = "By " + response[0].reviews[i][0] + " on " + response[0].reviews[i][2];
 
           var hr = document.createElement("hr");
-          console.log("10")
           panel.appendChild(panelBody);
           panel.appendChild(panelFooter);
           reviewTab.appendChild(panel);
           reviewTab.appendChild(hr);
-          console.log("11")
         }
       }
     }
