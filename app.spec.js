@@ -35,6 +35,30 @@ describe("Info can be", function() {
       json: {name: "Bob", review: "Review", festivalId: "0", date: "11/25/2017"}
     }, function(error, response, body) {
       assert.equal(response.statusCode, 200)
+      done();
+    })
+  })
+
+  it("get favorites", function(done) {
+    request("http://localhost:" + port + "/getFavorites", function(error, response, body) {
+      assert.equal(response.statusCode, 200)
+      done();
+    })
+  })
+
+  it("favorite", function(done) {
+    request("http://localhost:" + port + "/favorite?q=0", function(error, response, body) {
+      assert.equal(response.statusCode, 200)
+      done();
+    })
+  })
+
+  it("deleted", function(done) {
+    request({
+      method: "DELETE",
+      url: "http://localhost:" + port + "/removefavorite?q=0",
+    }, function(error, response, body) {
+      assert.equal(response.statusCode, 200)
       server.close();
       done();
     })

@@ -359,7 +359,6 @@ app.delete("/removefavorite", function(req, res) {
     }
   }
   if(matched.length > 0) {
-    console.log(matched)
     myClient.connect(url, function(error, database) {
       if(error) {console.log(error)}
       else {
