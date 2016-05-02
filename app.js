@@ -258,6 +258,19 @@ var festivals = [
 
 ];
 
+app.get("/getFavorites", function(req, res) {
+  myClient.connect(url, function(error, database) {
+    if(error) {console.log(error)}
+    else {
+        var favorites = database.collection("favorites");
+        favorites.find({}).toArray(function(error, docs) {
+        res.json(docs);
+        database.close();
+        })
+    }
+  })
+
+})
 
 app.post("/sort", jsonParser, function(req, res) {
   var matched = [];

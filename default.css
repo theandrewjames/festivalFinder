@@ -150,3 +150,11 @@ body {
   background-color: white;
   border-top: 0;
 }
+
+.navbar {
+  background-color: black;
+}
+
+.dropdown-menu {
+  width: 300px;
+}

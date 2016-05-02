@@ -17,6 +17,7 @@ var reviewerName = document.getElementById("reviewerName");
 var review = document.getElementById("reviewInput");
 var addReview = document.getElementById("reviewButton");
 var favoriteTab = document.getElementById("favoriteTab");
+var favoriteList = document.getElementsByClassName("favoriteList");
 
 sortButton.addEventListener("click", function() {
   while(reviewTab.hasChildNodes()) {
@@ -258,6 +259,62 @@ document.addEventListener("click", function() {
         if(xhr.status == 200) {
           var results = xhr.response;
 
+        }
+      }
+    }
+  }
+  if(event.target.dataset.type == "favoriteItem") {
+    var item = event.target;
+    var id = item.dataset.id;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/view?q=" + id, true);
+    xhr.send();
+    xhr.onload = function() {
+      if(xhr.status == 200) {
+        var response = JSON.parse(xhr.response);
+        carousel.classList.add("hidden");
+        profileContainer.classList.remove("hidden");
+        results.classList.add("hidden");
+        profileImage.setAttribute("src", response[0].image);
+        dates.textContent = response[0].day + ", " + response[0].month + " " + response[0].dates + ", " + response[0].year;
+        footerName.textContent = response[0].name;
+        modalLineup.setAttribute("src", response[0].lineup);
+        profileLink.textContent = " " + response[0].website;
+        profileLink.setAttribute("href", "http://" + response[0].website);
+        profileAddress.textContent = " " + response[0].venue + ", " + response[0].city + ", " + response[0].state
+        profileAddress.setAttribute("href", "http://maps.google.com/?q=" + response[0].venue + "+" + response[0].city);
+        price.textContent = "GA: " + response[0].ga + " VIP: " + response[0].vip;
+        addReview.dataset.id = response[0].dataId;
+        if(response[0].favorite == true) {
+          favoriteTab.textContent = "♥ Remove from favorites";
+          favoriteTab.dataset.id = response[0].dataId;
+          favoriteTab.dataset.type = "favorite";
+          favoriteTab.className = "added";
+        }
+        else {
+          favoriteTab.textContent = "♡ Add to favorites";
+          favoriteTab.className = "notAdded";
+          favoriteTab.dataset.type = "favorite";
+          favoriteTab.dataset.id = response[0].dataId;
+        }
+        for(var i = 0;i < response[0].reviews.length;i++) {
+          var panel = document.createElement("div");
+          panel.className = "panel panel-default";
+          var panelBody = document.createElement("div");
+          panelBody.className = "panel-body";
+          panelBody.textContent = response[0].reviews[i][1];
+          console.log("9")
+          var panelFooter = document.createElement("div");
+          panelFooter.className = "panel-footer";
+          panelFooter.textContent = "By " + response[0].reviews[i][0] + " on " + response[0].reviews[i][2];
+
+          var hr = document.createElement("hr");
+          console.log("10")
+          panel.appendChild(panelBody);
+          panel.appendChild(panelFooter);
+          reviewTab.appendChild(panel);
+          reviewTab.appendChild(hr);
+          console.log("11")
         }
       }
     }
