@@ -285,7 +285,6 @@ app.post("/sort", jsonParser, function(req, res) {
               for(var x = 0;x < festivals.length;x++) {
                 if(docs[i].id == festivals[x].dataId) {
                   festivals[x].favorite = true;
-                  console.log(festivals[x].favorite);
                 }
               }
             }
@@ -382,9 +381,8 @@ app.post("/addReview", jsonParser, function(req, res) {
 })
 
 
-var port = process.env.PORT || 1337;
-app.listen(port, function() {
-  console.log("Listening on port " + port);
-})
+if(!require.main.loaded) {
+  var server = app.listen(1337)
+}
 
 module.exports = app;
