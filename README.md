@@ -1,2 +1,2 @@
 # festivalFinder
-[Check out festivallFinder on Heroku](http://9dry-cliffs-15334.herokuapp.com))
+[Check out festivallFinder on Heroku](http://calm-earth-62104.herokuapp.com))
