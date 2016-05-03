@@ -3,7 +3,9 @@ var app = express();
 var jsonParser = require("body-parser").json();
 var mongo = require("mongodb");
 var myClient = mongo.MongoClient;
-var url = "mongodb://localhost/test";
+// var url = "mongodb://localhost/test";
+var uri = "mongodb://heroku_lc7mrf79:cf5o9loeigm92uv2l0mdq8cgjs@ds013192.mlab.com:13192/heroku_lc7mrf79";
+
 
 
 app.use(express.static("./"))
@@ -259,7 +261,7 @@ var festivals = [
 ];
 
 app.get("/getFavorites", function(req, res) {
-  myClient.connect(url, function(error, database) {
+  myClient.connect(uri, function(error, database) {
     if(error) {console.log(error)}
     else {
         var favorites = database.collection("favorites");
@@ -289,7 +291,7 @@ app.post("/sort", jsonParser, function(req, res) {
     }
   }
   if(matched.length > 0) {
-      myClient.connect(url, function(error, database) {
+      myClient.connect(uri, function(error, database) {
         if(error) {console.log(error)}
         else {
             var favorites = database.collection("favorites");
@@ -333,7 +335,7 @@ app.get("/favorite", function(req, res) {
     }
   }
   if(matched.length > 0) {
-    myClient.connect(url, function(error, database) {
+    myClient.connect(uri, function(error, database) {
       if(error) {console.log(error)}
       else {
         var favorites = database.collection("favorites");
@@ -359,7 +361,7 @@ app.delete("/removefavorite", function(req, res) {
     }
   }
   if(matched.length > 0) {
-    myClient.connect(url, function(error, database) {
+    myClient.connect(uri, function(error, database) {
       if(error) {console.log(error)}
       else {
         var favorites = database.collection("favorites");
