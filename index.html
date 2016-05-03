@@ -2,13 +2,38 @@
 <html>
   <head>
     <title>Festival Finder</title>
-    <h1>Festival Finder</h1>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link href="default.css" rel="stylesheet">
   </head>
-  <body>
+  <body ng-app="favorites">
     <div class="container-fluid">
+      <nav class="navbar navbar-inverse">
+        <div ng-controller="favoriteController as favorite">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Favorited Festivals<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li ng-repeat="item in favorite.list">
+                    <a ng-model="item">
+                      <div class="row">
+                        <div class="col-md-6" data-type="favoriteItem" data-id={{item.id}}>
+                          {{item.month}}, {{item.dates}}
+                        </div>
+                        <div class="col-md-6" data-type="favoriteItem" data-id={{item.id}}>
+                          {{item.name}}
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <h1>Festival Finder</h1>
       <div class="col-md-12">
         <div class="col-md-4 col-md-offset-4">
           <form id="sortForm" class="form-inline">
@@ -174,6 +199,7 @@
                     <ul class="nav nav-tabs" role="tablist">
                       <li role="presentation" class="active"><a href="#reviewTab" aria-controls="home" role="tab" data-toggle="tab">Reviews</a></li>
                       <li role="presentation"><a href="#addTab" aria-controls="profile" role="tab" data-toggle="tab">Leave a review</a></li>
+                      <li role="presentation"><a aria-controls="favorite" id="favoriteTab" role="tab" data-toggle="tab">♥ Add to favoirites</a></li>
                     </ul>
                     <div class="tab-content">
                       <div role="tabpanel" class="tab-pane active" id="reviewTab">
@@ -202,7 +228,9 @@
       </div>
     </div>
     <script src="default.js"></script>
+    <script src="https://code.angularjs.org/1.4.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="./public/app.js"></script>
   </body>
 </html>
