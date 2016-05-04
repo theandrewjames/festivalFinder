@@ -3,7 +3,6 @@ var app = express();
 var jsonParser = require("body-parser").json();
 var mongo = require("mongodb");
 var myClient = mongo.MongoClient;
-// var url = "mongodb://localhost/test";
 var uri = "mongodb://heroku_lc7mrf79:cf5o9loeigm92uv2l0mdq8cgjs@ds013192.mlab.com:13192/heroku_lc7mrf79";
 
 
