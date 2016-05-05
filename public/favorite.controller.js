@@ -1,9 +1,9 @@
 var app = angular.module("favorites");
 
 app.controller("favoriteController", favorite);
-app.$inject = ["$http"];
+app.$inject = ["$http", "$scope"];
 
-function favorite($http) {
+function favorite($http, $scope) {
   var vm = this;
   activate();
   function activate() {
@@ -12,10 +12,10 @@ function favorite($http) {
   function getFavorites() {
     var festival = $http.get("/getFavorites");
     festival.then(function(info) {
-      vm.list = info.data;
+      $scope.data = info.data;
+      vm.list = $scope.data;
+      console.log(vm.list);
     })
   }
-  vm.finished = function() {
-  
-  }
+
 }

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link href="default.css" rel="stylesheet">
   </head>
-  <body ng-app="favorites">
+  <body ng-app="favorites" ng-controller="favoriteController as favorite">
     <div class="container-fluid">
       <div ng-view>
       </div>
@@ -131,7 +131,7 @@
     </div>
     <div class="container-fluid" id="results">
     </div>
-    <div class="container-fluid hidden" ng-controller="favoriteController as favorite" id="profile">
+    <div class="container-fluid hidden" ng-controller="festivalController as festival" id="profile">
       <div class="row">
         <div class="col-md-10 col-md-offset-1" id="profileImageDiv">
           <div class="panel panel-default" id="profilePanel">
@@ -176,7 +176,7 @@
                     <ul class="nav nav-tabs" role="tablist">
                       <li role="presentation" class="active"><a href="#reviewTab" aria-controls="home" role="tab" data-toggle="tab">Reviews</a></li>
                       <li role="presentation"><a href="#addTab" aria-controls="profile" role="tab" data-toggle="tab">Leave a review</a></li>
-                      <li role="presentation"><a aria-controls="favorite" ng-click="favorite.finished()" id="favoriteTab" role="tab" data-toggle="tab">♥ Add to favoirites</a></li>
+                      <li role="presentation"><a aria-controls="favorite" ng-click="festival.finished($event)" id="favoriteTab" role="tab" data-toggle="tab">♥ Add to favoirites</a></li>
                     </ul>
                     <div class="tab-content">
                       <div role="tabpanel" class="tab-pane active" id="reviewTab">
@@ -211,5 +211,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="./public/app.js"></script>
     <script src="./public/favorite.controller.js"></script>
+    <script src="./public/festival.controller.js"></script>
   </body>
 </html>
