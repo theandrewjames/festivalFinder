@@ -1,9 +1,9 @@
-var app = angular.module("favorites");
+var app = angular.module("favorites", []);
 
 app.controller("favoriteController", favorite);
-app.$inject = ["$http", "$scope"];
+app.$inject = ["$http"];
 
-function favorite($http, $scope) {
+function favorite($http) {
   var vm = this;
   activate();
   function activate() {
@@ -12,10 +12,18 @@ function favorite($http, $scope) {
   function getFavorites() {
     var festival = $http.get("/getFavorites");
     festival.then(function(info) {
-      $scope.data = info.data;
-      vm.list = $scope.data;
-      console.log(vm.list);
+      vm.list = info.data;
     })
   }
 
+  vm.finished = function(event) {
+    var id = event.target.dataset.id;
+    for(var i = 0;i < vm.list.length;i++) {
+      if(vm.list[i].id == id) {
+        vm.list.splice(i, 1);
+      }
+    }
+    getFavorites();
+    getFavorites();
+  }
 }

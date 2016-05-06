@@ -259,6 +259,23 @@ var festivals = [
 
 ];
 
+myClient.connect(uri, function(error, database) {
+  if(error) {console.log(error)}
+  else {
+    var favorites = database.collection("favorites");
+    favorites.find({}).toArray(function(error, docs) {
+    for(var i = 0;i < docs.length;i++) {
+      for(var x = 0;x < festivals.length;x++) {
+        if(docs[i].id == festivals[x].dataId) {
+          festivals[x].favorite = true;
+        }
+      }
+    }
+    database.close();
+    })
+  }
+})
+
 app.get("/getFavorites", function(req, res) {
   myClient.connect(uri, function(error, database) {
     if(error) {console.log(error)}
