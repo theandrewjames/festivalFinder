@@ -1,5 +1,5 @@
 # festivalFinder
-[Check out festivallFinder on Heroku](http://festival-finder.herokuapp.com)
+[Check out festivalFinder on Heroku](http://festival-finder.herokuapp.com)
 
 ## festivalFinder Home page. 
 ![Home page screenshot](https://cloud.githubusercontent.com/assets/9271429/15080856/d8278876-1374-11e6-8f78-f41e70f961e3.png)
