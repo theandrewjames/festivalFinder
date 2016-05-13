@@ -9,6 +9,10 @@ h1 {
   text-align: center;
 }
 
+#sortButton {
+  background-color: blue;
+}
+
 #carousel {
   margin-top: 50px;
 }
