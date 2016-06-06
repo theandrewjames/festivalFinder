@@ -15,7 +15,8 @@ function favorite($http) {
       vm.list = info.data;
     })
   }
-
+  setInterval(getFavorites, 1000);
+  
   vm.finished = function(event) {
     var id = event.target.dataset.id;
     for(var i = 0;i < vm.list.length;i++) {
@@ -23,7 +24,6 @@ function favorite($http) {
         vm.list.splice(i, 1);
       }
     }
-    getFavorites();
-    getFavorites();
+
   }
 }
